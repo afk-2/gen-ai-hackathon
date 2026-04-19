@@ -16,6 +16,7 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           contents: [
             {
+              role:"user",
               parts: [
                 {
                   text: "Summarize this:\n" + input
