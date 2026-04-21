@@ -1,10 +1,9 @@
-console.log("KEY:", process.env.OPENROUTER_API_KEY);
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).send("Method not allowed");
   }
 
-  const { input } = req.body;
+  const { messages } = req.body;
 
   try {
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -15,12 +14,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: "openai/gpt-4o-mini",
-        messages: [
-          {
-            role: "user",
-            content: "Summarize this:\n" + input
-          }
-        ]
+        messages: messages
       })
     });
 
